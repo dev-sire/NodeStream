@@ -2,7 +2,7 @@
 export default function Home() {
   return (
     <div>
-      I will load videos in the future!
+      <p className="text-xl mt-16 ml-12 text-blue-500 font-semibold">I will load videos in the future!</p>
     </div>
   );
 }
