@@ -30,8 +30,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MoreVerticalIcon, TrashIcon } from "lucide-react";
+import { CopyIcon, MoreVerticalIcon, TrashIcon } from "lucide-react";
 import { videoUpdateSchema } from "@/db/schema";
+import { toast } from "sonner";
+import { VideoPlayer } from "@/modules/videos/ui/components/video-player";
+import Link from "next/link";
 
 interface FormSectionProps {
   videoId: string;
@@ -55,16 +58,29 @@ const FormSectionSkeleton = () => {
 
 const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
+  const utils = trpc.useUtils()
   const [video] = trpc.studio.getOne.useSuspenseQuery({ id: videoId })
   const [categories] = trpc.categories.getMany.useSuspenseQuery()
+  const update = trpc.videos.update.useMutation({
+    onSuccess: () => {
+      utils.studio.getMany.invalidate()
+      utils.studio.getOne.invalidate({ id: videoId })
+      toast.success("Video updated!")
+    },
+    onError: () => {
+      toast.error("Something went wrong")
+    }
+  })
   const form = useForm<z.infer<typeof videoUpdateSchema>>({
     resolver: zodResolver(videoUpdateSchema),
     defaultValues: video
   })
 
-  const onSubmit = async(data: z.infer<typeof videoUpdateSchema>) => {
-    console.log(data)
+  const onSubmit = (data: z.infer<typeof videoUpdateSchema>) => {
+    update.mutateAsync(data)
   }
+
+  
 
   return(
     <Form {...form}>
@@ -75,7 +91,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
             <p className="text-xs text-muted-foreground">Manage your video details</p>
           </div>
           <div className="flex items-center gap-x-2">
-            <Button type="submit" disabled={false}>
+            <Button type="submit" disabled={update.isPending}>
               Save
             </Button>
             <DropdownMenu>
@@ -166,6 +182,38 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                 </FormItem>
               )}
             />
+          </div>
+          <div className="flex flex-col gap-y-8 lg:col-span-2">
+            <div className="flex flex-col h-fit gap-4 bg-[#f9f9f9] rounded-xl overflow-hidden">
+              <div className="aspect-video overflow-hidden relative">
+                <VideoPlayer 
+                  playbackId={video.muxPlaybackId}
+                  thumbnailUrl={video.thumbnailUrl}
+                />
+              </div>
+              <div className="p-4 flex flex-col gap-y-6">
+                <div className="flex justify-between items-center gap-x-2">
+                  <div className="flex flex-col gap-y-1">
+                    <p className="text-muted-foreground text-xs">Video Link</p>
+                    <div className="flex items-center gap-x-2">
+                      <Link href={`/videos/${video.id}`}>
+                        <p className="line-clamp-1 text-sm text-blue-500">http:localhost:3000/123</p>
+                      </Link>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="shrink-0"
+                        disabled={false}
+                        onClick={() => {}}
+                      >
+                        <CopyIcon />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </form>
