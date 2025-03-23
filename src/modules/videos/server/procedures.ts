@@ -19,7 +19,7 @@ export const videosRouter = createTRPCRouter({
         title: input.title,
         description: input.description,
         categoryId: input.categoryId,
-        visiblity: input.visiblity,
+        visibility: input.visibility,
         updatedAt: new Date()
       })
       .where(and(

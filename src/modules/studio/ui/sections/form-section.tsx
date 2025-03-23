@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc/client";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ErrorBoundary } from "react-error-boundary";
@@ -30,11 +30,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CopyIcon, MoreVerticalIcon, TrashIcon } from "lucide-react";
+import { CopyCheckIcon, CopyIcon, Globe2Icon, LockIcon, MoreVerticalIcon, TrashIcon } from "lucide-react";
 import { videoUpdateSchema } from "@/db/schema";
 import { toast } from "sonner";
 import { VideoPlayer } from "@/modules/videos/ui/components/video-player";
 import Link from "next/link";
+import { snakeCaseToTitle } from "@/lib/utils";
 
 interface FormSectionProps {
   videoId: string;
@@ -80,7 +81,18 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     update.mutateAsync(data)
   }
 
-  
+  // TODO: Change if deploying outside of vercel
+  const fullUrl = `${process.env.VERCEL_URL || "http://localhost:3000"}/videos/${videoId}`
+  const [isCopied, setIsCopied] = useState(false)
+
+  const onCopy = async () => {
+    await navigator.clipboard.writeText(fullUrl)
+    setIsCopied(true)
+
+    setTimeout(() => {
+      setIsCopied(false)
+    }, 2000)
+  }
 
   return(
     <Form {...form}>
@@ -197,23 +209,79 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                     <p className="text-muted-foreground text-xs">Video Link</p>
                     <div className="flex items-center gap-x-2">
                       <Link href={`/videos/${video.id}`}>
-                        <p className="line-clamp-1 text-sm text-blue-500">http:localhost:3000/123</p>
+                        <p className="line-clamp-1 text-sm text-blue-500">{fullUrl}</p>
                       </Link>
                       <Button
                         type="button"
                         variant="ghost"
                         size="icon"
                         className="shrink-0"
-                        disabled={false}
-                        onClick={() => {}}
+                        onClick={onCopy}
+                        disabled={isCopied}
                       >
-                        <CopyIcon />
+                        {isCopied ? <CopyCheckIcon /> : <CopyIcon />}
                       </Button>
                     </div>
                   </div>
                 </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-y-1">
+                    <p className="text-muted-foreground text-xs">
+                      Video Status
+                    </p>
+                    <p className="text-sm">
+                      {snakeCaseToTitle(video.muxStatus || "preparing")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-y-1">
+                    <p className="text-muted-foreground text-xs">
+                      Subtitles Status
+                    </p>
+                    <p className="text-sm">
+                      {snakeCaseToTitle(video.muxTrackStatus || "no_subtitles")}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
+            <FormField
+              control={form.control}
+              name="visibility"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Visibility
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value ?? undefined}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select visibility" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="public">
+                        <div className="flex items-center">
+                          <Globe2Icon className="size-4 mr-2" />
+                          Public
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="private">
+                        <div className="flex items-center">
+                          <LockIcon className="size-4 mr-2" />
+                          Private
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
         </div>
       </form>

@@ -116,7 +116,7 @@ export const POST = async (request: Request) => {
         asset_id: string;
       }
 
-      console.log("Track ready")
+      // console.log("Track ready", data)
 
       const assetId = data.asset_id
       const trackId = data.id
