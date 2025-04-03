@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## NodeStream: An online video steaming platform
 
 ## Getting Started
 
@@ -14,23 +14,197 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+📦 NodeStream
+├─ .gitignore
+├─ .vscode
+│  └─ settings.json
+├─ README.md
+├─ bun.lock
+├─ components.json
+├─ drizzle.config.ts
+├─ eslint.config.mjs
+├─ next.config.ts
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.mjs
+├─ public
+│  ├─ file.svg
+│  ├─ globe.svg
+│  ├─ logo.svg
+│  ├─ next.svg
+│  ├─ placeholder.svg
+│  ├─ vercel.svg
+│  └─ window.svg
+├─ src
+│  ├─ app
+│  │  ├─ (auth)
+│  │  │  ├─ layout.tsx
+│  │  │  ├─ sign-in
+│  │  │  │  └─ [[...sign-in]]
+│  │  │  │     └─ page.tsx
+│  │  │  └─ sign-up
+│  │  │     └─ [[...sign-up]]
+│  │  │        └─ page.tsx
+│  │  ├─ (home)
+│  │  │  ├─ layout.tsx
+│  │  │  └─ page.tsx
+│  │  ├─ (studio)
+│  │  │  ├─ layout.tsx
+│  │  │  └─ studio
+│  │  │     ├─ page.tsx
+│  │  │     └─ videos
+│  │  │        └─ [videoId]
+│  │  │           └─ page.tsx
+│  │  ├─ api
+│  │  │  ├─ trpc
+│  │  │  │  └─ [trpc]
+│  │  │  │     └─ route.ts
+│  │  │  ├─ uploadthing
+│  │  │  │  ├─ core.ts
+│  │  │  │  └─ route.ts
+│  │  │  ├─ users
+│  │  │  │  └─ webhook
+│  │  │  │     └─ route.ts
+│  │  │  └─ videos
+│  │  │     └─ webhook
+│  │  │        └─ route.ts
+│  │  ├─ favicon.ico
+│  │  ├─ globals.css
+│  │  └─ layout.tsx
+│  ├─ components
+│  │  ├─ filter-carousel.tsx
+│  │  ├─ infinite-scroll.tsx
+│  │  ├─ responsive-modal.tsx
+│  │  ├─ ui
+│  │  │  ├─ accordion.tsx
+│  │  │  ├─ alert-dialog.tsx
+│  │  │  ├─ alert.tsx
+│  │  │  ├─ aspect-ratio.tsx
+│  │  │  ├─ avatar.tsx
+│  │  │  ├─ badge.tsx
+│  │  │  ├─ breadcrumb.tsx
+│  │  │  ├─ button.tsx
+│  │  │  ├─ calendar.tsx
+│  │  │  ├─ card.tsx
+│  │  │  ├─ carousel.tsx
+│  │  │  ├─ chart.tsx
+│  │  │  ├─ checkbox.tsx
+│  │  │  ├─ collapsible.tsx
+│  │  │  ├─ command.tsx
+│  │  │  ├─ context-menu.tsx
+│  │  │  ├─ dialog.tsx
+│  │  │  ├─ drawer.tsx
+│  │  │  ├─ dropdown-menu.tsx
+│  │  │  ├─ form.tsx
+│  │  │  ├─ hover-card.tsx
+│  │  │  ├─ input-otp.tsx
+│  │  │  ├─ input.tsx
+│  │  │  ├─ label.tsx
+│  │  │  ├─ menubar.tsx
+│  │  │  ├─ navigation-menu.tsx
+│  │  │  ├─ pagination.tsx
+│  │  │  ├─ popover.tsx
+│  │  │  ├─ progress.tsx
+│  │  │  ├─ radio-group.tsx
+│  │  │  ├─ resizable.tsx
+│  │  │  ├─ scroll-area.tsx
+│  │  │  ├─ select.tsx
+│  │  │  ├─ separator.tsx
+│  │  │  ├─ sheet.tsx
+│  │  │  ├─ sidebar.tsx
+│  │  │  ├─ skeleton.tsx
+│  │  │  ├─ slider.tsx
+│  │  │  ├─ sonner.tsx
+│  │  │  ├─ switch.tsx
+│  │  │  ├─ table.tsx
+│  │  │  ├─ tabs.tsx
+│  │  │  ├─ textarea.tsx
+│  │  │  ├─ toast.tsx
+│  │  │  ├─ toaster.tsx
+│  │  │  ├─ toggle-group.tsx
+│  │  │  ├─ toggle.tsx
+│  │  │  └─ tooltip.tsx
+│  │  └─ user-avatar.tsx
+│  ├─ constants.ts
+│  ├─ db
+│  │  ├─ index.ts
+│  │  └─ schema.ts
+│  ├─ hooks
+│  │  ├─ use-intersection-observer.ts
+│  │  ├─ use-mobile.tsx
+│  │  └─ use-toast.ts
+│  ├─ lib
+│  │  ├─ mux.ts
+│  │  ├─ ratelimit.ts
+│  │  ├─ redis.ts
+│  │  ├─ uploadthing.ts
+│  │  └─ utils.ts
+│  ├─ middleware.ts
+│  ├─ modules
+│  │  ├─ auth
+│  │  │  └─ ui
+│  │  │     └─ components
+│  │  │        └─ auth-button.tsx
+│  │  ├─ categories
+│  │  │  └─ server
+│  │  │     └─ procedures.ts
+│  │  ├─ home
+│  │  │  └─ ui
+│  │  │     ├─ components
+│  │  │     │  ├─ home-navbar
+│  │  │     │  │  ├─ index.tsx
+│  │  │     │  │  └─ search-input.tsx
+│  │  │     │  └─ home-sidebar
+│  │  │     │     ├─ index.tsx
+│  │  │     │     ├─ main-section.tsx
+│  │  │     │     └─ personal-section.tsx
+│  │  │     ├─ layouts
+│  │  │     │  └─ home-layout.tsx
+│  │  │     ├─ sections
+│  │  │     │  └─ categories-section.tsx
+│  │  │     └─ views
+│  │  │        └─ home-view.tsx
+│  │  ├─ studio
+│  │  │  ├─ server
+│  │  │  │  └─ procedures.ts
+│  │  │  └─ ui
+│  │  │     ├─ components
+│  │  │     │  ├─ studio-navbar
+│  │  │     │  │  └─ index.tsx
+│  │  │     │  ├─ studio-sidebar
+│  │  │     │  │  ├─ index.tsx
+│  │  │     │  │  └─ studio-sidebar-header.tsx
+│  │  │     │  ├─ studio-upload-modal.tsx
+│  │  │     │  ├─ studio-uploader.tsx
+│  │  │     │  └─ thumbnail-upload-modal.tsx
+│  │  │     ├─ layouts
+│  │  │     │  └─ studio-layout.tsx
+│  │  │     ├─ sections
+│  │  │     │  ├─ form-section.tsx
+│  │  │     │  └─ videos-section.tsx
+│  │  │     └─ views
+│  │  │        ├─ studio-view.tsx
+│  │  │        └─ video-view.tsx
+│  │  └─ videos
+│  │     ├─ server
+│  │     │  └─ procedures.ts
+│  │     ├─ types.ts
+│  │     └─ ui
+│  │        └─ components
+│  │           ├─ video-player.tsx
+│  │           └─ video-thumbnail.tsx
+│  ├─ scripts
+│  │  └─ seed-categories.ts
+│  └─ trpc
+│     ├─ client.tsx
+│     ├─ init.ts
+│     ├─ query-client.ts
+│     ├─ routers
+│     │  └─ _app.ts
+│     └─ server.tsx
+├─ tailwind.config.ts
+└─ tsconfig.json
+```
