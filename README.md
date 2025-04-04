@@ -1,20 +1,24 @@
-## NodeStream: An online video steaming platform
+# NodeStream: Legacy YouTube, Reimagined (Under Development)
 
-## Getting Started
+Welcome to NodeStream, a personal portfolio project aiming to recreate the classic YouTube experience with modern technologies and a touch of AI. Currently under development, NodeStream seeks to provide a familiar yet enhanced video streaming platform.
 
-First, run the development server:
+## Key Features (Planned)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **Classic YouTube Feel:** NodeStream's design draws inspiration from the legacy YouTube interface, aiming for a nostalgic user experience.
+* **AI-Powered Content Creation:**
+    * Planned feature: Generate compelling video titles, descriptions, and thumbnails using AI, streamlining the content creation process.
+* **Modern Tech Stack:**
+    * Built on Next.js 15 for server-side rendering and performance.
+    * Bun.js for fast and efficient runtime.
+    * TypeScript for robust type safety.
+    * Tailwind CSS and Shadcn for a sleek and responsive UI.
+    * tRPC for seamless API communication.
+    * Mux for high-quality video streaming.
+    * UploadThing for efficient file uploads.
+    * Upstash for rate limiting and AI background jobs.
+    * Drizzle ORM for serverless SQL database management.
 
-## Project Structure
+## Current Project Structure
 
 ```
 📦 NodeStream
@@ -50,7 +54,10 @@ bun dev
 │  │  │        └─ page.tsx
 │  │  ├─ (home)
 │  │  │  ├─ layout.tsx
-│  │  │  └─ page.tsx
+│  │  │  ├─ page.tsx
+│  │  │  └─ videos
+│  │  │     └─ [videoId]
+│  │  │        └─ page.tsx
 │  │  ├─ (studio)
 │  │  │  ├─ layout.tsx
 │  │  │  └─ studio
@@ -188,14 +195,25 @@ bun dev
 │  │  │     └─ views
 │  │  │        ├─ studio-view.tsx
 │  │  │        └─ video-view.tsx
+│  │  ├─ subscriptions
+│  │  │  └─ ui
+│  │  │     └─ componenets
+│  │  │        └─ subscription-button.tsx
 │  │  └─ videos
 │  │     ├─ server
 │  │     │  └─ procedures.ts
 │  │     ├─ types.ts
 │  │     └─ ui
-│  │        └─ components
-│  │           ├─ video-player.tsx
-│  │           └─ video-thumbnail.tsx
+│  │        ├─ components
+│  │        │  ├─ video-banner.tsx
+│  │        │  ├─ video-owner.tsx
+│  │        │  ├─ video-player.tsx
+│  │        │  ├─ video-thumbnail.tsx
+│  │        │  └─ video-top-row.tsx
+│  │        ├─ sections
+│  │        │  └─ videos-section.tsx
+│  │        └─ views
+│  │           └─ video-view.tsx
 │  ├─ scripts
 │  │  └─ seed-categories.ts
 │  └─ trpc
@@ -208,3 +226,54 @@ bun dev
 ├─ tailwind.config.ts
 └─ tsconfig.json
 ```
+## Getting Started (Development)
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/dev-sire/NodeStream.git
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    bun install
+    ```
+
+3.  **Set up environment variables:**
+
+    * Create a `.env.local` file and add your API keys, database credentials, and other necessary environment variables.
+
+4.  **Run the development server:**
+
+    ```bash
+    bun run dev
+    ```
+
+5.  Open your browser and navigate to `http://localhost:3000`.
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute:
+
+1.  Fork the repository.
+2.  Create a new branch for your feature or bug fix.
+3.  Make your changes and submit a pull request.
+
+* We appreciate contributions for bug fixes, UI improvements, and new features that align with the project's vision.
+
+## License
+
+This project is licensed under the Mozilla Public License 2.0.
+
+## Future Enhancements (Planned)
+
+* Live chat functionality.
+* Enhanced video editing tools.
+* Improved AI-powered recommendation system.
+
+## Contact
+
+For questions, feedback, or collaboration, please reach out:
+
+* **LinkedIn:** [Aman Shahid](https://www.linkedin.com/in/aman-shahid-32708a2b7/)
