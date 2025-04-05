@@ -25,6 +25,7 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 ├─ .gitignore
 ├─ .vscode
 │  └─ settings.json
+├─ LICENSE
 ├─ README.md
 ├─ bun.lock
 ├─ components.json
@@ -199,6 +200,10 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  └─ ui
 │  │  │     └─ componenets
 │  │  │        └─ subscription-button.tsx
+│  │  ├─ users
+│  │  │  └─ ui
+│  │  │     └─ components
+│  │  │        └─ user-info.tsx
 │  │  └─ videos
 │  │     ├─ server
 │  │     │  └─ procedures.ts
@@ -206,11 +211,16 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │     └─ ui
 │  │        ├─ components
 │  │        │  ├─ video-banner.tsx
+│  │        │  ├─ video-description.tsx
+│  │        │  ├─ video-menu.tsx
 │  │        │  ├─ video-owner.tsx
 │  │        │  ├─ video-player.tsx
+│  │        │  ├─ video-reactions.tsx
 │  │        │  ├─ video-thumbnail.tsx
 │  │        │  └─ video-top-row.tsx
 │  │        ├─ sections
+│  │        │  ├─ comments-section.tsx
+│  │        │  ├─ suggestions-section.tsx
 │  │        │  └─ videos-section.tsx
 │  │        └─ views
 │  │           └─ video-view.tsx
