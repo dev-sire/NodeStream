@@ -9,8 +9,22 @@ interface SubscriptionButtonProps {
   size?: ButtonProps["size"];
 }
 
-export const SubscriptionButton = () => {
+export const SubscriptionButton = ({
+  onClick,
+  disabled,
+  isSubscribed,
+  className,
+  size
+}: SubscriptionButtonProps) => {
   return (
-    <div className="">some button</div>
+    <Button
+      size={size}
+      variant={isSubscribed ? "secondary" : "default"}
+      className={cn("rounded-full", className)}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {isSubscribed ? "Unsubscribed" : "Subscribe"}
+    </Button>
   )
 }
