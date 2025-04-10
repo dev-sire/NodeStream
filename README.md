@@ -204,6 +204,9 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  └─ ui
 │  │  │     └─ components
 │  │  │        └─ user-info.tsx
+│  │  ├─ video-views
+│  │  │  └─ server
+│  │  │     └─ procedures.ts
 │  │  └─ videos
 │  │     ├─ server
 │  │     │  └─ procedures.ts
