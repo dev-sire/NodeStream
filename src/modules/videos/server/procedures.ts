@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { users, videos, videoUpdateSchema, videoViews } from "@/db/schema";
+import { users, videoReactions, videos, videoUpdateSchema, videoViews } from "@/db/schema";
 import { mux } from "@/lib/mux";
 import { createTRPCRouter, protectedProcedure, baseProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
@@ -10,14 +10,34 @@ import { z } from "zod";
 export const videosRouter = createTRPCRouter({
   getOne: baseProcedure
     .input(z.object({id: z.string().uuid()}))
-    .query(async({ input }) => {
+    .query(async({ input, ctx }) => {
+
+      const { clerkUserId } = ctx;
+
+
+      // const videoReactions = db.$with("viewer_reactions").as()
+
       const [existingVideo] = await db
         .select({
           ...getTableColumns(videos),
           user: {
             ...getTableColumns(users),
           },
-          viewCount: db.$count(videoViews, eq(videoViews.videoId, videos.id))
+          viewCount: db.$count(videoViews, eq(videoViews.videoId, videos.id)),
+          likeCount: db.$count(
+            videoReactions,
+            and(
+              eq(videoReactions.videoId, videos.id),
+              eq(videoReactions.type, "like"),
+            )
+          ),
+          dislikeCount: db.$count(
+            videoReactions,
+            and(
+              eq(videoReactions.videoId, videos.id),
+              eq(videoReactions.type, "dislike"),
+            )
+          ),
         })
         .from(videos)
         .innerJoin(users, eq(videos.userId, users.id))
