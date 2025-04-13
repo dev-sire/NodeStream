@@ -197,6 +197,10 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │        ├─ studio-view.tsx
 │  │  │        └─ video-view.tsx
 │  │  ├─ subscriptions
+│  │  │  ├─ hooks
+│  │  │  │  └─ use-subscriptions.ts
+│  │  │  ├─ server
+│  │  │  │  └─ procedures.ts
 │  │  │  └─ ui
 │  │  │     └─ componenets
 │  │  │        └─ subscription-button.tsx
@@ -204,6 +208,9 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  └─ ui
 │  │  │     └─ components
 │  │  │        └─ user-info.tsx
+│  │  ├─ video-reactions
+│  │  │  └─ server
+│  │  │     └─ procedures.ts
 │  │  ├─ video-views
 │  │  │  └─ server
 │  │  │     └─ procedures.ts
