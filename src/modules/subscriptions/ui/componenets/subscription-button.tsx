@@ -16,7 +16,10 @@ export const SubscriptionButton = ({
   className,
   size
 }: SubscriptionButtonProps) => {
+  console.log(isSubscribed)
   return (
+
+
     <Button
       size={size}
       variant={isSubscribed ? "secondary" : "default"}
@@ -24,7 +27,7 @@ export const SubscriptionButton = ({
       onClick={onClick}
       disabled={disabled}
     >
-      {isSubscribed ? "Unsubscribed" : "Subscribe"}
+      {isSubscribed ? "Unsubscribe" : "Subscribe"}
     </Button>
   )
 }
