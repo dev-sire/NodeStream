@@ -159,6 +159,9 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  ├─ categories
 │  │  │  └─ server
 │  │  │     └─ procedures.ts
+│  │  ├─ comments
+│  │  │  └─ server
+│  │  │     └─ procedures.ts
 │  │  ├─ home
 │  │  │  └─ ui
 │  │  │     ├─ components
@@ -246,6 +249,7 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 ├─ tailwind.config.ts
 └─ tsconfig.json
 ```
+
 ## Getting Started (Development)
 
 1.  **Clone the repository:**
