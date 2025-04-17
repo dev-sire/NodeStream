@@ -41,6 +41,7 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  ├─ logo.svg
 │  ├─ next.svg
 │  ├─ placeholder.svg
+│  ├─ user-placeholder.svg
 │  ├─ vercel.svg
 │  └─ window.svg
 ├─ src
@@ -160,8 +161,11 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  └─ server
 │  │  │     └─ procedures.ts
 │  │  ├─ comments
-│  │  │  └─ server
-│  │  │     └─ procedures.ts
+│  │  │  ├─ server
+│  │  │  │  └─ procedures.ts
+│  │  │  └─ ui
+│  │  │     └─ components
+│  │  │        └─ comment-form.tsx
 │  │  ├─ home
 │  │  │  └─ ui
 │  │  │     ├─ components
