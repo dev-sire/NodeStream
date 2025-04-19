@@ -18,7 +18,7 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
     * Upstash for rate limiting and AI background jobs.
     * Drizzle ORM for serverless SQL database management.
 
-## Current Project Structure
+## Project Structure
 
 ```
 📦 NodeStream
@@ -163,9 +163,11 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  ├─ comments
 │  │  │  ├─ server
 │  │  │  │  └─ procedures.ts
+│  │  │  ├─ types.ts
 │  │  │  └─ ui
 │  │  │     └─ components
-│  │  │        └─ comment-form.tsx
+│  │  │        ├─ comment-form.tsx
+│  │  │        └─ comment-item.tsx
 │  │  ├─ home
 │  │  │  └─ ui
 │  │  │     ├─ components
