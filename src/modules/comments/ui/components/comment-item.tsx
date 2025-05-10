@@ -41,6 +41,31 @@ export const CommentItem = ({
     }
   })
 
+  const like = trpc.commentReactions.like.useMutation({
+    onSuccess: () => {
+      utils.comments.getMany.invalidate({ videoId: comment.videoId })
+    },
+    onError: (error) => {
+      toast.error("Something went wrong")
+
+      if(error.data?.code === "UNAUTHORIZED"){
+        clerk.openSignIn()
+      }
+    }
+  })
+  const dislike = trpc.commentReactions.dislike.useMutation({
+    onSuccess: () => {
+      utils.comments.getMany.invalidate({ videoId: comment.videoId })
+    },
+    onError: (error) => {
+      toast.error("Something went wrong")
+
+      if(error.data?.code === "UNAUTHORIZED"){
+        clerk.openSignIn()
+      }
+    }
+  })
+
   return(
     <div>
       <div className="flex gap-4">
@@ -71,26 +96,30 @@ export const CommentItem = ({
                 className="size-8"
                 size="icon"
                 variant="ghost"
-                onClick={() => {}}
-                disabled={false}
+                onClick={() => like.mutate({ commentId: comment.id })}
+                disabled={like.isPending}
               >
                 <ThumbsUpIcon 
-                  className={cn()}
+                  className={cn(
+                    comment.viewerReaction === "like" && "fill-black"
+                  )}
                 />
               </Button>
-              <span className="text-xs text-muted-foreground">1k</span>
+              <span className="text-xs text-muted-foreground">{comment.likeCount}</span>
               <Button 
                 className="size-8"
                 size="icon"
                 variant="ghost"
-                onClick={() => {}}
-                disabled={false}
+                onClick={() => dislike.mutate({ commentId: comment.id })}
+                disabled={dislike.isPending}
               >
                 <ThumbsDownIcon
-                  className={cn()}
+                  className={cn(
+                    comment.viewerReaction === "dislike" && "fill-black"
+                  )}
                 />
               </Button>
-              <span className="text-xs text-muted-foreground">0</span>
+              <span className="text-xs text-muted-foreground">{comment.dislikeCount}</span>
             </div>
           </div>
         </div>
