@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { CommentForm } from "./comment-form";
+import { CommentReplies } from "./comment-replies";
 
 interface CommentItemProps {
   comment: CommentsGetManyOutput["items"][number];
@@ -187,6 +188,12 @@ export const CommentItem = ({
             {comment.replyCount} Replies
           </Button>
         </div>
+      )}
+      {comment.replyCount > 0 && variant === "comment" && isRepliesOpen && (
+        <CommentReplies 
+          parentId={comment.id}
+          videoId={comment.videoId}
+        />
       )}
     </div>
   )

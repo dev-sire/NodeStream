@@ -167,7 +167,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  └─ ui
 │  │  │     └─ components
 │  │  │        ├─ comment-form.tsx
-│  │  │        └─ comment-item.tsx
+│  │  │        ├─ comment-item.tsx
+│  │  │        └─ comment-replies.tsx
 │  │  ├─ home
 │  │  │  └─ ui
 │  │  │     ├─ components
