@@ -199,7 +199,10 @@ export const CommentItem = ({
         </div>
       )}
       {comment.replyCount > 0 && variant === "comment" && isRepliesOpen && (
-        <CommentReplies parentId={comment.id} videoId={comment.videoId} />
+        <CommentReplies 
+          parentId={comment.id} 
+          videoId={comment.videoId} 
+        />
       )}
     </div>
   );
