@@ -160,6 +160,9 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  ├─ categories
 │  │  │  └─ server
 │  │  │     └─ procedures.ts
+│  │  ├─ comment-reactions
+│  │  │  └─ server
+│  │  │     └─ procedures.ts
 │  │  ├─ comments
 │  │  │  ├─ server
 │  │  │  │  └─ procedures.ts
@@ -214,6 +217,9 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  └─ ui
 │  │  │     └─ componenets
 │  │  │        └─ subscription-button.tsx
+│  │  ├─ suggestions
+│  │  │  └─ server
+│  │  │     └─ procedures.ts
 │  │  ├─ users
 │  │  │  └─ ui
 │  │  │     └─ components
@@ -232,10 +238,13 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │        ├─ components
 │  │        │  ├─ video-banner.tsx
 │  │        │  ├─ video-description.tsx
+│  │        │  ├─ video-grid-card.tsx
+│  │        │  ├─ video-info.tsx
 │  │        │  ├─ video-menu.tsx
 │  │        │  ├─ video-owner.tsx
 │  │        │  ├─ video-player.tsx
 │  │        │  ├─ video-reactions.tsx
+│  │        │  ├─ video-row-card.tsx
 │  │        │  ├─ video-thumbnail.tsx
 │  │        │  └─ video-top-row.tsx
 │  │        ├─ sections
