@@ -22,8 +22,8 @@ function getQueryClient() {
 function getUrl() {
   const base = (() => {
     if (typeof window !== 'undefined') return '';
-    if (APP_URL) return `https://${APP_URL}`;
-    return 'http://localhost:3000';
+    // NOTE: It is crucial to modify the APP_URL variable in production domains, including the protocols 
+    return APP_URL;
   })();
   return `${base}/api/trpc`;
 }

@@ -81,7 +81,7 @@ export const VideoRowCardSkeleton = ({
 
 export const VideoRowCard = ({
   data,
-  size,
+  size = "default",
   onRemove
 }: VideoRowCardProps) => {
 
