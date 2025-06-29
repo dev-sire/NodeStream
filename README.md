@@ -57,6 +57,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  ├─ (home)
 │  │  │  ├─ layout.tsx
 │  │  │  ├─ page.tsx
+│  │  │  ├─ search
+│  │  │  │  └─ page.tsx
 │  │  │  └─ videos
 │  │  │     └─ [videoId]
 │  │  │        └─ page.tsx
@@ -188,6 +190,15 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     │  └─ categories-section.tsx
 │  │  │     └─ views
 │  │  │        └─ home-view.tsx
+│  │  ├─ search
+│  │  │  ├─ server
+│  │  │  │  └─ procedures.ts
+│  │  │  └─ ui
+│  │  │     ├─ sections
+│  │  │     │  ├─ categories-section.tsx
+│  │  │     │  └─ results-section.tsx
+│  │  │     └─ views
+│  │  │        └─ search-view.tsx
 │  │  ├─ studio
 │  │  │  ├─ server
 │  │  │  │  └─ procedures.ts
