@@ -187,7 +187,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     ├─ layouts
 │  │  │     │  └─ home-layout.tsx
 │  │  │     ├─ sections
-│  │  │     │  └─ categories-section.tsx
+│  │  │     │  ├─ categories-section.tsx
+│  │  │     │  └─ home-videos-section.tsx
 │  │  │     └─ views
 │  │  │        └─ home-view.tsx
 │  │  ├─ search
