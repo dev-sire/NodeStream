@@ -55,6 +55,11 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     └─ [[...sign-up]]
 │  │  │        └─ page.tsx
 │  │  ├─ (home)
+│  │  │  ├─ feed
+│  │  │  │  ├─ subscriptions
+│  │  │  │  │  └─ page.tsx
+│  │  │  │  └─ trending
+│  │  │  │     └─ page.tsx
 │  │  │  ├─ layout.tsx
 │  │  │  ├─ page.tsx
 │  │  │  ├─ search
@@ -188,9 +193,13 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     │  └─ home-layout.tsx
 │  │  │     ├─ sections
 │  │  │     │  ├─ categories-section.tsx
-│  │  │     │  └─ home-videos-section.tsx
+│  │  │     │  ├─ home-videos-section.tsx
+│  │  │     │  ├─ subscribed-videos-section.tsx
+│  │  │     │  └─ trending-videos-section.tsx
 │  │  │     └─ views
-│  │  │        └─ home-view.tsx
+│  │  │        ├─ home-view.tsx
+│  │  │        ├─ subscribed-view.tsx
+│  │  │        └─ trending-view.tsx
 │  │  ├─ search
 │  │  │  ├─ server
 │  │  │  │  └─ procedures.ts
