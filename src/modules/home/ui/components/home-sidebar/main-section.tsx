@@ -3,6 +3,7 @@
 import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { FlameIcon, HomeIcon, PlaySquareIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const items = [
@@ -27,6 +28,7 @@ const items = [
 export const MainSection = () => {
 
   const clerk = useClerk()
+  const pathName = usePathname()
   const { isSignedIn } = useAuth()
 
   return (
@@ -38,7 +40,7 @@ export const MainSection = () => {
               <SidebarMenuButton 
                 tooltip={item.title} 
                 asChild
-                isActive={false} // TODO: Change to look at the current pathname
+                isActive={pathName === item.url}
                 onClick={(e) => {
                   if(!isSignedIn && item.auth){
                     e.preventDefault()
