@@ -62,6 +62,11 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  │     └─ page.tsx
 │  │  │  ├─ layout.tsx
 │  │  │  ├─ page.tsx
+│  │  │  ├─ playlists
+│  │  │  │  ├─ history
+│  │  │  │  │  └─ page.tsx
+│  │  │  │  └─ liked
+│  │  │  │     └─ page.tsx
 │  │  │  ├─ search
 │  │  │  │  └─ page.tsx
 │  │  │  └─ videos
@@ -200,6 +205,16 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │        ├─ home-view.tsx
 │  │  │        ├─ subscribed-view.tsx
 │  │  │        └─ trending-view.tsx
+│  │  ├─ playlists
+│  │  │  ├─ server
+│  │  │  │  └─ procedures.ts
+│  │  │  └─ ui
+│  │  │     ├─ sections
+│  │  │     │  ├─ history-videos-section.tsx
+│  │  │     │  └─ liked-videos-section.tsx
+│  │  │     └─ views
+│  │  │        ├─ history-view.tsx
+│  │  │        └─ liked-view.tsx
 │  │  ├─ search
 │  │  │  ├─ server
 │  │  │  │  └─ procedures.ts
