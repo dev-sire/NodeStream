@@ -209,10 +209,18 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  ├─ playlists
 │  │  │  ├─ server
 │  │  │  │  └─ procedures.ts
+│  │  │  ├─ types.ts
 │  │  │  └─ ui
+│  │  │     ├─ components
+│  │  │     │  ├─ playlist-create-modal.tsx
+│  │  │     │  └─ playlist-grid-card
+│  │  │     │     ├─ index.tsx
+│  │  │     │     ├─ playlist-info.tsx
+│  │  │     │     └─ playlist-thumbnail.tsx
 │  │  │     ├─ sections
 │  │  │     │  ├─ history-videos-section.tsx
-│  │  │     │  └─ liked-videos-section.tsx
+│  │  │     │  ├─ liked-videos-section.tsx
+│  │  │     │  └─ playlists-section.tsx
 │  │  │     └─ views
 │  │  │        ├─ history-view.tsx
 │  │  │        ├─ liked-view.tsx
