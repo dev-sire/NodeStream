@@ -19,7 +19,6 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
     * Drizzle ORM for serverless SQL database management.
 
 ## Project Structure
-
 ```
 📦 NodeStream
 ├─ .gitignore
@@ -212,6 +211,7 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  ├─ types.ts
 │  │  │  └─ ui
 │  │  │     ├─ components
+│  │  │     │  ├─ playlist-add-modal.tsx
 │  │  │     │  ├─ playlist-create-modal.tsx
 │  │  │     │  └─ playlist-grid-card
 │  │  │     │     ├─ index.tsx
