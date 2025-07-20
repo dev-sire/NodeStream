@@ -4,6 +4,8 @@ interface UserViewProps {
 
 export const UserView = ({ userId }: UserViewProps) => {
   return(
-    <div className="text-lg font-medium text-rose-500">{userId}</div>
+    <div className="flex flex-col max-w-[1300px] px-4 pt-2.5 mx-auto gap-y-6">
+      {userId}
+    </div>
   )
 }
