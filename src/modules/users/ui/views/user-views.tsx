@@ -1,3 +1,5 @@
+import { UserSection } from "../sections/user-section";
+
 interface UserViewProps {
   userId: string;
 }
@@ -5,7 +7,7 @@ interface UserViewProps {
 export const UserView = ({ userId }: UserViewProps) => {
   return(
     <div className="flex flex-col max-w-[1300px] px-4 pt-2.5 mx-auto gap-y-6">
-      {userId}
+      <UserSection userId={userId} />
     </div>
   )
 }
