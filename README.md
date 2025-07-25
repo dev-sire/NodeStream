@@ -72,6 +72,9 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  │  └─ page.tsx
 │  │  │  ├─ search
 │  │  │  │  └─ page.tsx
+│  │  │  ├─ users
+│  │  │  │  └─ [userId]
+│  │  │  │     └─ page.tsx
 │  │  │  └─ videos
 │  │  │     └─ [videoId]
 │  │  │        └─ page.tsx
@@ -273,9 +276,18 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  └─ server
 │  │  │     └─ procedures.ts
 │  │  ├─ users
+│  │  │  ├─ server
+│  │  │  │  └─ procedures.ts
+│  │  │  ├─ types.ts
 │  │  │  └─ ui
-│  │  │     └─ components
-│  │  │        └─ user-info.tsx
+│  │  │     ├─ components
+│  │  │     │  ├─ banner-upload-modal.tsx
+│  │  │     │  ├─ user-info.tsx
+│  │  │     │  └─ user-page-banner.tsx
+│  │  │     ├─ sections
+│  │  │     │  └─ user-section.tsx
+│  │  │     └─ views
+│  │  │        └─ user-views.tsx
 │  │  ├─ video-reactions
 │  │  │  └─ server
 │  │  │     └─ procedures.ts
