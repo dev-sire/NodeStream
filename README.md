@@ -73,8 +73,10 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  ├─ search
 │  │  │  │  └─ page.tsx
 │  │  │  ├─ users
-│  │  │  │  └─ [userId]
-│  │  │  │     └─ page.tsx
+│  │  │  │  ├─ [userId]
+│  │  │  │  │  └─ page.tsx
+│  │  │  │  └─ current
+│  │  │  │     └─ route.ts
 │  │  │  └─ videos
 │  │  │     └─ [videoId]
 │  │  │        └─ page.tsx
@@ -283,7 +285,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     ├─ components
 │  │  │     │  ├─ banner-upload-modal.tsx
 │  │  │     │  ├─ user-info.tsx
-│  │  │     │  └─ user-page-banner.tsx
+│  │  │     │  ├─ user-page-banner.tsx
+│  │  │     │  └─ user-page-info.tsx
 │  │  │     ├─ sections
 │  │  │     │  └─ user-section.tsx
 │  │  │     └─ views

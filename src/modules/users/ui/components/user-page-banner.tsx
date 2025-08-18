@@ -1,10 +1,10 @@
 import { useAuth } from "@clerk/nextjs";
+import { UsersGetOneOutput } from "../../types";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Edit2Icon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState } from "react";
-import { UsersGetOneOutput } from "../../types";
 import { BannerUploadModal } from "./banner-upload-modal";
 
 interface UserPageBannerProps {
@@ -25,8 +25,8 @@ export const UserPageBanner = ({ user }: UserPageBannerProps) => {
       />
       <div
         className={cn(
-          "w-full max-h-[200px] h-[25vh] border border-gray-100 bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl",
-          user.bannerUrl ? "bg-cover bg-center" : "bg-gray-100"
+          "w-full max-h-[200px] h-[25vh] bg-gradient-to-r from-bg-gray-100 to-bg-gray-300 rounded-xl",
+          user.bannerUrl ? "bg-cover bg-center" : "bg-gray-300"
         )}
         style={{
           backgroundImage: user.bannerUrl
