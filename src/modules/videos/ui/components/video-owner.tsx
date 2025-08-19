@@ -3,7 +3,7 @@ import { VideoGetOneOutput } from "../../types";
 import { UserAvatar } from "@/components/user-avatar";
 import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { SubscriptionButton } from "@/modules/subscriptions/ui/componenets/subscription-button";
+import { SubscriptionButton } from "@/modules/subscriptions/ui/components/subscription-button";
 import { UserInfo } from "@/modules/users/ui/components/user-info";
 import { useSubscriptions } from "@/modules/subscriptions/hooks/use-subscriptions";
 

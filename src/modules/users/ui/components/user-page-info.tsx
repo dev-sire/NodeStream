@@ -6,7 +6,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSubscriptions } from "@/modules/subscriptions/hooks/use-subscriptions";
-import { SubscriptionButton } from "@/modules/subscriptions/ui/componenets/subscription-button";
+import { SubscriptionButton } from "@/modules/subscriptions/ui/components/subscription-button";
 
 interface UserPageInfoProps {
   user: UsersGetOneOutput;
