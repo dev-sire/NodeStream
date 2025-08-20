@@ -12,7 +12,7 @@ export const HomeNavbar = () => {
 
         <div className="flex items-center flex-shrink-0">
           <SidebarTrigger />
-          <Link href="/">
+          <Link href="/" className="hidden md:block">
             <div className="flex p-4 items-center gap-1">
               <Image src="/logo.svg" width={32} height={32} alt="main-logo" />
               <p className="text-xl font-semibold tracking-tight">NodeStream</p>
