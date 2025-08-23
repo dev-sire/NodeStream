@@ -58,7 +58,7 @@ export const VideoReactions = ({
         variant="secondary"
         className="rounded-l-full rounded-r-none gap-2 pr-4"
       >
-        <ThumbsUpIcon className={cn("size-5", viewerReaction === 'like' && "fill-black")} />
+        <ThumbsUpIcon className={cn("size-5", viewerReaction === 'like' && "fill-black dark:fill-primary")} />
         {likes}
       </Button>
       <Separator orientation="vertical" className="h-7" />
@@ -68,7 +68,7 @@ export const VideoReactions = ({
         variant="secondary"
         className="rounded-l-none rounded-r-full pl-3"
       >
-        <ThumbsDownIcon className={cn("size-5", viewerReaction === 'dislike' && "fill-black")} />
+        <ThumbsDownIcon className={cn("size-5", viewerReaction === 'dislike' && "fill-black dark:fill-primary")} />
         {dislikes}
       </Button>
     </div>

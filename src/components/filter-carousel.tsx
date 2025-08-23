@@ -50,11 +50,11 @@ export const FilterCarousel = ({
     <div className="relative w-full">
       {/* LEFT FADE */}
 
-      <div 
+      <div
         className={cn(
-          "absolute top-0 left-12 bottom-0 w-12 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none",
+          "absolute left-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-r  from-background to-transparent pointer-events-none",
           current === 1 && "hidden"
-        )} 
+        )}
       />
 
       <Carousel
@@ -103,12 +103,11 @@ export const FilterCarousel = ({
         <CarouselNext className="right-0 z-20" />
       </Carousel>
       {/* RIGHT FADE */}
-
-      <div 
+      <div
         className={cn(
-          "absolute top-0 right-12 bottom-0 w-12 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none",
+          "absolute right-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none",
           current === count && "hidden"
-        )} 
+        )}
       />
     </div>
   )

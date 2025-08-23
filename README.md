@@ -72,6 +72,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  │  └─ page.tsx
 │  │  │  ├─ search
 │  │  │  │  └─ page.tsx
+│  │  │  ├─ subscriptions
+│  │  │  │  └─ page.tsx
 │  │  │  ├─ users
 │  │  │  │  ├─ [userId]
 │  │  │  │  │  └─ page.tsx
@@ -98,8 +100,11 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  │  └─ webhook
 │  │  │  │     └─ route.ts
 │  │  │  └─ videos
-│  │  │     └─ webhook
-│  │  │        └─ route.ts
+│  │  │     ├─ webhook
+│  │  │     │  └─ route.ts
+│  │  │     └─ workflows
+│  │  │        └─ title
+│  │  │           └─ route.ts
 │  │  ├─ favicon.ico
 │  │  ├─ globals.css
 │  │  └─ layout.tsx
@@ -107,6 +112,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  ├─ filter-carousel.tsx
 │  │  ├─ infinite-scroll.tsx
 │  │  ├─ responsive-modal.tsx
+│  │  ├─ theme-changer.tsx
+│  │  ├─ theme-provider.tsx
 │  │  ├─ ui
 │  │  │  ├─ accordion.tsx
 │  │  │  ├─ alert-dialog.tsx
@@ -170,7 +177,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  ├─ ratelimit.ts
 │  │  ├─ redis.ts
 │  │  ├─ uploadthing.ts
-│  │  └─ utils.ts
+│  │  ├─ utils.ts
+│  │  └─ workflow.ts
 │  ├─ middleware.ts
 │  ├─ modules
 │  │  ├─ auth
@@ -201,7 +209,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     │  └─ home-sidebar
 │  │  │     │     ├─ index.tsx
 │  │  │     │     ├─ main-section.tsx
-│  │  │     │     └─ personal-section.tsx
+│  │  │     │     ├─ personal-section.tsx
+│  │  │     │     └─ subscriptions-section.tsx
 │  │  │     ├─ layouts
 │  │  │     │  └─ home-layout.tsx
 │  │  │     ├─ sections
@@ -272,8 +281,13 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │  ├─ server
 │  │  │  │  └─ procedures.ts
 │  │  │  └─ ui
-│  │  │     └─ componenets
-│  │  │        └─ subscription-button.tsx
+│  │  │     ├─ components
+│  │  │     │  ├─ subscription-button.tsx
+│  │  │     │  └─ subscriptions-item.tsx
+│  │  │     ├─ sections
+│  │  │     │  └─ subscriptions-section.tsx
+│  │  │     └─ views
+│  │  │        └─ subscriptions-view.tsx
 │  │  ├─ suggestions
 │  │  │  └─ server
 │  │  │     └─ procedures.ts
@@ -288,7 +302,8 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     │  ├─ user-page-banner.tsx
 │  │  │     │  └─ user-page-info.tsx
 │  │  │     ├─ sections
-│  │  │     │  └─ user-section.tsx
+│  │  │     │  ├─ user-section.tsx
+│  │  │     │  └─ videos-section.tsx
 │  │  │     └─ views
 │  │  │        └─ user-views.tsx
 │  │  ├─ video-reactions

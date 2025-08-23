@@ -51,14 +51,14 @@ export const SearchInput = () => {
             onClick={() => setValue("")}
             className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full"
           >
-            <XIcon className="text-gray-500" />
+            <XIcon className="text-gray-500 dark:text-white" />
           </Button>
         )}
       </div>
       <button
         disabled={!value.trim()}
         type="submit"
-        className="px-5 py-2.5 bg-gray-100 border border-l-0 rounded-r-full hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="px-5 py-2.5 bg-gray-100 border border-l-0 rounded-r-full hover:bg-gray-200 disabled:text-white disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <SearchIcon className="size-5" />
       </button>

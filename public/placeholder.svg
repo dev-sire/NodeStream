@@ -5,7 +5,7 @@
   <!-- YouTube Logo -->
   <g transform="translate(800, 450)">
     <!-- Red rounded rectangle -->
-    <rect x="-200" y="-140" width="400" height="280" rx="35" fill="#FF2056"/>
+    <rect x="-200" y="-140" width="400" height="280" rx="35" fill="#7c3aed"/>
     
     <!-- White "face" elements -->
     <circle cx="-50" cy="-20" r="25" fill="white"/>
