@@ -145,6 +145,15 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     }
   })
 
+  const generateThumbnail = trpc.videos.generateThumbnail.useMutation({
+    onSuccess: () => {
+      toast.success("Background generation started", { description: "This may take some time." })
+    },
+    onError: () => {
+      toast.error("Something went wrong")
+    }
+  })
+
   const form = useForm<z.infer<typeof videoUpdateSchema>>({
     resolver: zodResolver(videoUpdateSchema),
     defaultValues: video
@@ -165,10 +174,6 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     setTimeout(() => {
       setIsCopied(false)
     }, 2000)
-  }
-
-  const handleThumbnailGenerate = () => {
-    toast.success("Under development! Coming Soon")
   }
 
   return(
@@ -280,7 +285,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                               <ImagePlusIcon className="size-4 mr-1" />
                               Change
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleThumbnailGenerate()}>
+                            <DropdownMenuItem onClick={() => generateThumbnail.mutate()}>
                               <SparklesIcon className="size-4 mr-1" />
                               AI-generated
                             </DropdownMenuItem>
@@ -328,7 +333,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
               />
             </div>
             <div className="flex flex-col gap-y-8 lg:col-span-2">
-              <div className="flex flex-col h-fit gap-4 bg-[#f9f9f9] rounded-xl overflow-hidden">
+              <div className="flex flex-col h-fit gap-4 bg-background rounded-xl overflow-hidden">
                 <div className="aspect-video overflow-hidden relative">
                   <VideoPlayer 
                     playbackId={video.muxPlaybackId}

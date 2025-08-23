@@ -3,10 +3,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { SearchInput } from "./search-input"
 import { AuthButton } from "@/modules/auth/ui/components/auth-button"
+import { ModeToggle } from "@/components/theme-changer"
 
 export const HomeNavbar = () => {
   return (
-    <nav className="fixed left-0 right-0 top-0 h-16 z-50 bg-white flex items-center px-2 pr-5">
+    <nav className="fixed left-0 right-0 top-0 h-16 z-50 bg-background flex items-center px-2 pr-5">
       <div className="flex items-center gap-4 w-full">
         {/* Menu and Logo */}
 
@@ -27,6 +28,7 @@ export const HomeNavbar = () => {
 
         <div className="flex-shrink-0 items-center flex gap-4">
           <AuthButton />
+          <ModeToggle />
         </div>
       </div>
     </nav>
