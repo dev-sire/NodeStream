@@ -145,7 +145,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     }
   })
 
-  const generateThumbnail = trpc.videos.generateThumbnail.useMutation({
+  const generateTitle = trpc.videos.generateTitle.useMutation({
     onSuccess: () => {
       toast.success("Background generation started", { description: "This may take some time." })
     },
@@ -285,7 +285,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                               <ImagePlusIcon className="size-4 mr-1" />
                               Change
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => generateThumbnail.mutate()}>
+                            <DropdownMenuItem onClick={() => generateTitle.mutate({ id: videoId })}>
                               <SparklesIcon className="size-4 mr-1" />
                               AI-generated
                             </DropdownMenuItem>
