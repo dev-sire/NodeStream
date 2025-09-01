@@ -147,12 +147,23 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
   const generateTitle = trpc.videos.generateTitle.useMutation({
     onSuccess: () => {
-      toast.success("Background generation started", { description: "This may take some time." })
+      toast.success("Title generation started", { description: "This may take 1-2 minutes." })
     },
     onError: () => {
       toast.error("Something went wrong")
     }
   })
+
+  const generateDescription = trpc.videos.generateDescription.useMutation({
+    onSuccess: () => {
+      toast.success("Description generation started", {
+        description: "This may take 1-2 minutes",
+      });
+    },
+    onError: () => {
+      toast.error("Something went wrong!");
+    },
+  });
 
   const form = useForm<z.infer<typeof videoUpdateSchema>>({
     resolver: zodResolver(videoUpdateSchema),
@@ -223,7 +234,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                     <FormLabel>
                       Title
                       <Button
-                          className="rounded-full size-6 [&_svg]:size-3"
+                          className="rounded-full size-6 [&_svg]:size-3 ml-2"
                           size={"icon"}
                           variant="outline"
                           type="button"
@@ -242,7 +253,8 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                     <FormControl>
                       <Input 
                         {...field}
-                        placeholder="Add a title to your video"
+                        disabled={generateTitle.isPending}
+                        placeholder={generateTitle.isPending ? "Generating..." : "Add a title to your video"}
                       />
                     </FormControl>
                     <FormMessage />
@@ -256,15 +268,33 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                   <FormItem>
                     <FormLabel>
                       Description
-                      {/* TODO: Add AI generate button */}
+                      <Button
+                          className="rounded-full size-6 [&_svg]:size-3 ml-2"
+                          size={"icon"}
+                          variant="outline"
+                          type="button"
+                          disabled={
+                            generateDescription.isPending || !video.muxTrackId
+                          }
+                          onClick={() =>
+                            generateDescription.mutate({ id: videoId })
+                          }
+                        >
+                          {generateDescription.isPending ? (
+                            <Loader2Icon className="animate-spin" />
+                          ) : (
+                            <SparkleIcon />
+                          )}
+                        </Button>
                     </FormLabel>
                     <FormControl>
                       <Textarea 
                         {...field}
                         value={field.value ?? ""}
+                        disabled={generateDescription.isPending}
                         rows={10}
                         className="resize-none pr-10"
-                        placeholder="Add a description to your video"
+                        placeholder={generateDescription.isPending ? "Generating..." : "Add a description to your video"}
                       />
                     </FormControl>
                     <FormMessage />
