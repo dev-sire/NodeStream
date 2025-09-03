@@ -3,73 +3,78 @@ import { videos } from "@/db/schema";
 import { serve } from "@upstash/workflow/nextjs";
 import { and, eq } from "drizzle-orm";
 import { UTApi } from "uploadthing/server";
+
 interface InputType {
-  userId: string;
-  videoId: string;
-  prompt: string;
+	userId: string;
+	videoId: string;
+	prompt: string;
 }
 
 export const { POST } = serve(async (context) => {
-  const input = context.requestPayload as InputType;
-  const { videoId, userId, prompt } = input;
-  const utapi = new UTApi();
+	const input = context.requestPayload as InputType;
+	const { videoId, userId, prompt } = input;
+	const utapi = new UTApi();
 
-  const video = await context.run("get-video", async () => {
-    const [existingVideo] = await db
-      .select()
-      .from(videos)
-      .where(and(eq(videos.id, videoId), eq(videos.userId, userId)));
-    if (!existingVideo) {
-      throw new Error("Not found");
-    }
-    return existingVideo;
-  });
+	const video = await context.run("get-video", async () => {
+		const [existingVideo] = await db
+			.select()
+			.from(videos)
+			.where(and(eq(videos.id, videoId), eq(videos.userId, userId)));
+		if (!existingVideo) {
+			throw new Error("Not found");
+		}
+		return existingVideo;
+	});
 
-  const { body } = await context.call<{ data: { url: string }[] }>(
-    "generate-thumbnail",
-    {
-      url: "https://api.openai.com/v1/images/generations",
-      method: "POST",
-      body: {
-        prompt,
-        n: 1,
-        model: "dall-e-3",
-        size: "1792x1024",
-      },
-      headers: {
-        authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-    }
-  );
+	const { body } = await context.call<{ result: { base64: string } }>(
+		"generate-thumbnail",
+		{
+			url: `https://api.cloudflare.com/client/v4/accounts/${process.env.WORKERSAI_ACCOUNT_ID}/ai/run/@cf/stabilityai/stable-diffusion-xl-base-1.0`,
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${process.env.WORKERSAI_API_KEY}`,
+			},
+			body: JSON.stringify({
+				prompt,
+				height: 1080,
+				width: 1920,
+			}),
+		}
+	);
 
-  const tempThumbnailUrl = body.data[0].url;
-  if (!tempThumbnailUrl) {
-    throw new Error("Bad request");
-  }
-  await context.run("thumbnail-cleanup", async () => {
-    if (video.thumbnailKey) {
-      await utapi.deleteFiles(video.thumbnailKey);
-      await db
-        .update(videos)
-        .set({ thumbnailKey: null, thumbnailUrl: null })
-        .where(and(eq(videos.id, videoId), eq(videos.userId, userId)));
-    }
-  });
-  const uploadedThumbnail = await context.run("upload-thumbnail", async () => {
-    const { data } = await utapi.uploadFilesFromUrl(tempThumbnailUrl);
-    if (!data) {
-      throw new Error("Bad request");
-    }
-    return data;
-  });
+	const tempThumbnailBase64 = body.result.base64;
+	if (!tempThumbnailBase64) {
+		throw new Error("Bad request: Missing base64 data from AI");
+	}
 
-  await context.run("update-video", async () => {
-    await db
-      .update(videos)
-      .set({
-        thumbnailKey: uploadedThumbnail.key,
-        thumbnailUrl: uploadedThumbnail.url,
-      })
-      .where(and(eq(videos.id, video.id), eq(videos.userId, video.userId)));
-  });
+	await context.run("thumbnail-cleanup", async () => {
+		if (video.thumbnailKey) {
+			await utapi.deleteFiles(video.thumbnailKey);
+			await db
+				.update(videos)
+				.set({ thumbnailKey: null, thumbnailUrl: null })
+				.where(and(eq(videos.id, videoId), eq(videos.userId, userId)));
+		}
+	});
+
+	const uploadedThumbnail = await context.run("upload-thumbnail", async () => {
+		const blob = await fetch(`data:image/png;base64,${tempThumbnailBase64}`).then(res => res.blob());
+		
+		const { data } = await utapi.uploadFiles(new File([blob], "thumbnail.png", { type: 'image/png' }));
+		if (!data) {
+			throw new Error("Bad request: UploadThing failed to upload");
+		}
+		return data;
+	});
+
+	await context.run("update-video", async () => {
+		await db
+			.update(videos)
+			.set({
+				thumbnailKey: uploadedThumbnail.key,
+				thumbnailUrl: uploadedThumbnail.url,
+			})
+			.where(and(eq(videos.id, video.id), eq(videos.userId, video.userId)));
+	});
 });
