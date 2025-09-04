@@ -30,8 +30,8 @@ export const ThumbnailGenerateModal = ({
 }: ThumbnailGenerateModalProps) => {
   const generateThumbnail = trpc.videos.generateThumbnail.useMutation({
     onSuccess: () => {
-      toast.success("Background job started", {
-        description: "This may take some time",
+      toast.success("Thumbnail Generated!", {
+        description: "It may fail due to timeout, try again.",
       });
       form.reset();
       onOpenChange(false);
@@ -40,7 +40,6 @@ export const ThumbnailGenerateModal = ({
       toast.error("Something went wrong!");
     },
   });
-
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     generateThumbnail.mutate({
       prompt: values.prompt,

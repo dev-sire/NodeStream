@@ -51,6 +51,7 @@ export const StudioUploader = ({ endpoint, onSuccess }: StudioUploaderProps) => 
         <MuxUploaderProgress 
           muxUploader={UPLOADER_ID}
           type="bar"
+          className="dark:bg-white"
         />
       </MuxUploaderDrop>
     </div>

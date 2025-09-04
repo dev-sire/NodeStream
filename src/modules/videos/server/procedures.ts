@@ -400,11 +400,54 @@ export const videosRouter = createTRPCRouter({
     z.object({ id: z.string().uuid(), prompt: z.string().min(10) })
   ).mutation(async ({ ctx, input }) => {
     const { id: userId } = ctx.user;
-    const { workflowRunId } = await workflow.trigger({
-      url: `${process.env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/thumbnail`,
-      body: { userId, videoId: input.id, prompt: input.prompt },
-    });
-    return workflowRunId;
+    const utapi = new UTApi();
+
+    const [video] = await db
+      .select()
+      .from(videos)
+      .where(and(eq(videos.id, input.id), eq(videos.userId, userId)));
+
+    if (!video) {
+      throw new Error("Video not found");
+    }
+    const generatedImage = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/videos/workflows/thumbnail`,
+      {
+        method: "POST",
+        body: JSON.stringify({ prompt: input.prompt }),
+      }
+    );
+
+    // Binary PNG → Blob → File
+    const arrayBuffer = await generatedImage.arrayBuffer();
+    const blob = new Blob([arrayBuffer], { type: "image/png" });
+    const file = new File([blob], "thumbnail.png", { type: "image/png" });
+
+    if (video.thumbnailKey) {
+      await utapi.deleteFiles(video.thumbnailKey);
+      await db
+        .update(videos)
+        .set({ thumbnailKey: null, thumbnailUrl: null })
+        .where(and(eq(videos.id, video.id), eq(videos.userId, video.userId)));
+    }
+
+    const { data } = await utapi.uploadFiles(file);
+    if (!data) {
+      throw new Error("UploadThing failed to upload thumbnail");
+    }
+
+    await db
+      .update(videos)
+      .set({
+        thumbnailKey: data.key,
+        thumbnailUrl: data.url,
+      })
+      .where(and(eq(videos.id, video.id), eq(videos.userId, video.userId)));
+
+    return {
+      success: true,
+      thumbnailUrl: data.url,
+    };
   }),
   restoreThumbnail: protectedProcedure
     .input(z.object({ id: z.string().uuid() }))
