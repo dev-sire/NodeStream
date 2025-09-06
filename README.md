@@ -103,6 +103,10 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     ├─ webhook
 │  │  │     │  └─ route.ts
 │  │  │     └─ workflows
+│  │  │        ├─ description
+│  │  │        │  └─ route.ts
+│  │  │        ├─ thumbnail
+│  │  │        │  └─ route.ts
 │  │  │        └─ title
 │  │  │           └─ route.ts
 │  │  ├─ favicon.ico
@@ -266,6 +270,7 @@ Welcome to NodeStream, a personal portfolio project aiming to recreate the class
 │  │  │     │  │  └─ studio-sidebar-header.tsx
 │  │  │     │  ├─ studio-upload-modal.tsx
 │  │  │     │  ├─ studio-uploader.tsx
+│  │  │     │  ├─ thumbnail-generate-modal.tsx
 │  │  │     │  └─ thumbnail-upload-modal.tsx
 │  │  │     ├─ layouts
 │  │  │     │  └─ studio-layout.tsx

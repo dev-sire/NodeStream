@@ -4,7 +4,7 @@ import { DEFAULT_LIMIT } from "@/constants";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { trpc } from "@/trpc/client";
 import { VideoRowCard, VideoRowCardSkeleton } from "@/modules/videos/ui/components/video-row-card";
-import { VideoGridCard, VideoGridCardSkeleton } from "@/modules/videos/ui/components/video-grid-card";
+import { VideoGridCard } from "@/modules/videos/ui/components/video-grid-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";

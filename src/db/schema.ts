@@ -1,5 +1,5 @@
 import { foreignKey, integer, pgEnum, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from "drizzle-orm/pg-core";
-import { Many, relations } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from "drizzle-zod";
 
 export const reactionType = pgEnum("reaction_type", ["like", "dislike"])
