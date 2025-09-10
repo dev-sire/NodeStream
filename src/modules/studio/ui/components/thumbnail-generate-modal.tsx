@@ -31,7 +31,8 @@ export const ThumbnailGenerateModal = ({
   const generateThumbnail = trpc.videos.generateThumbnail.useMutation({
     onSuccess: () => {
       toast.success("Thumbnail Generated!", {
-        description: "It may fail due to timeout, try again.",
+        description: "Wait a few seconds and refresh the page to see it.",
+        duration: 8000,
       });
       form.reset();
       onOpenChange(false);
@@ -55,7 +56,7 @@ export const ThumbnailGenerateModal = ({
 
   return (
     <ResponsiveModal
-      title="Upload a thumbnail"
+      title="Generate a thumbnail"
       open={open}
       onOpenChange={onOpenChange}
     >
@@ -76,7 +77,7 @@ export const ThumbnailGenerateModal = ({
                     className="resize-none"
                     cols={30}
                     rows={5}
-                    placeholder="A description of wanted thumbnail"
+                    placeholder="Describe your thumbnail idea in 1-2 lines"
                   />
                 </FormControl>
                 <FormMessage />
@@ -85,7 +86,7 @@ export const ThumbnailGenerateModal = ({
           />
           <div className="flex justify-end">
             <Button type="submit" disabled={generateThumbnail.isPending}>
-              Generate
+              {generateThumbnail.isPending ? "Generating..." : "Generate"}
             </Button>
           </div>
         </form>

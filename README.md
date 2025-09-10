@@ -1,12 +1,12 @@
 # NodeStream: Legacy YouTube, Reimagined
 
-Welcome to NodeStream, a personal portfolio project aiming to recreate the classic YouTube experience with modern technologies and a touch of AI. Currently under development, NodeStream seeks to provide a familiar yet enhanced video streaming platform.
+Welcome to NodeStream, a personal portfolio project aiming to recreate the classic YouTube experience with modern technologies and a touch of AI. NodeStream seeks to provide a familiar yet enhanced video streaming platform.
 
 ## Key Features
 
 * **Classic YouTube Feel:** NodeStream's design draws inspiration from the legacy YouTube interface, aiming for a nostalgic user experience.
 * **AI-Powered Content Creation:**
-    * Planned feature (Deepseek and Cloudflare AI): Generate compelling video titles, descriptions, and thumbnails using AI, streamlining the content creation process.
+    * Gemini API & Cloudflare's Worker's AI: Generate compelling video titles, descriptions, and thumbnails using AI, streamlining the content creation process.
 * **Modern Tech Stack:**
     * Built on Next.js 15 for server-side rendering and performance.
     * Bun.js for fast and efficient runtime.
